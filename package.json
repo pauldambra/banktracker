@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "tracks my spending for me",
   "main": "index.js",
-  "author": "pauldambra <pauldambra@gmail.com>",
+  "author": "pauldambra <paul.dambra@gmail.com>",
   "license": "CC-BY-SA-4.0",
   "dependencies": {
     "react": "^15.3.2",
