@@ -4,7 +4,7 @@
   "description": "tracks my spending for me",
   "main": "index.js",
   "author": "pauldambra <pauldambra@gmail.com>",
-  "license": "CC4",
+  "license": "CC-BY-SA-4.0",
   "dependencies": {
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
