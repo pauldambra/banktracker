@@ -2,17 +2,6 @@
 
 import React from 'react';
 
-// const StatementInput = React.createClass({
-//     onPaste: function(e) {
-//         console.log(e.clipboardData.getData('Text'), 'test');
-//     },
-//     render: function() {
-//         return (
-//             <textarea/>
-//         );
-//     }
-// });
-
 export default class StatementInput extends React.Component {
   constructor(props) {
     super(props);    
@@ -22,6 +11,7 @@ export default class StatementInput extends React.Component {
 
   handleChange(event) {
     this.setState({value: event.target.value});
+    console.log(event);
   }
 
   render() {

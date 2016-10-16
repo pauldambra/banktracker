@@ -10,22 +10,22 @@ const coerceAsMoney = m => {
 }
 
 const parseStatement = txt => {
-    const lines = txt.split('\n');
-    const [head, ...tail] = lines;
-    const headers = splitLine(head);
-    const result = [];
+  const lines = txt.split('\n');
+  const [head, ...tail] = lines;
+  const headers = splitLine(head);
+  const result = [];
 
-    tail.forEach(line => {
-        const lineItems = splitLine(line);
-        const statementItem = {};
-        for (var i = 0; i < headers.length; i++) {
-            const header = headers[i];
-            statementItem[header] = coerceAsMoney(lineItems[i]);
-        }
-        result.push(statementItem);
-    });
+  tail.forEach(line => {
+      const lineItems = splitLine(line);
+      const statementItem = {};
+      for (var i = 0; i < headers.length; i++) {
+          const header = headers[i];
+          statementItem[header] = coerceAsMoney(lineItems[i]);
+      }
+      result.push(statementItem);
+  });
 
-    return result;
+  return result;
 }
 
 export default parseStatement
