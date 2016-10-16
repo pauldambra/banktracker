@@ -1,5 +1,8 @@
+'use strict';
+
 import statement from './statement';
-import StatementInput from '../app/StatementInput';
+import StatementInput from './StatementInput';
+import spendingTypes from './spendingTypes';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -7,9 +10,12 @@ import Rx from 'rx';
 
 const statements$ = new Rx.Subject();
 
-statements$
-  .map(s => statement.parse(s.value))
-  .subscribe(s => console.log(s));
+const parsedStatements$ = statements$
+  .map(s => statement.parse(s.value));
+
+spendingTypes.totalOn(parsedStatements$);
+const bySpendingType$ = spendingTypes.results$;
+bySpendingType$.subscribe(bst => console.log(bst));
 
 ReactDOM.render(
   <StatementInput Subject={statements$} />,

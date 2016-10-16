@@ -4,8 +4,10 @@
   "description": "tracks my spending for me",
   "main": "index.js",
   "author": "pauldambra <paul.dambra@gmail.com>",
+  "repository": "https://github.com/pauldambra/banktracker",
   "license": "CC-BY-SA-4.0",
   "dependencies": {
+    "lodash": "^4.16.4",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "rx": "^4.1.0"

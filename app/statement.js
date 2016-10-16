@@ -3,11 +3,17 @@
 const splitLine = l => l.split(/\s{2,}/)
                         .filter(i => i != '');
 
+const strictParseFloat = function (value) {
+  if(/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/.test(value)) {
+    return Number(value);
+  }
+  return NaN;
+}
+
 const coerceAsMoney = m => {
-    if (/-{0,1}£\d+/.test(m)) {
-        return parseFloat(m.replace(/£/, ''), 10);
-    }
-    return m;
+  m = m.replace('£', '');
+  const mightBeMoney = strictParseFloat(m);
+  return isNaN(mightBeMoney) ? m : mightBeMoney;
 }
 
 const parseStatement = txt => {
@@ -21,11 +27,11 @@ const parseStatement = txt => {
       const statementItem = {};
       for (var i = 0; i < headers.length; i++) {
           const header = headers[i];
-          statementItem[header] = coerceAsMoney(lineItems[i]);
+          const maybeMoney = coerceAsMoney(lineItems[i]);
+          statementItem[header] = maybeMoney;
       }
       result.push(statementItem);
   });
-
   return result;
 }
 
