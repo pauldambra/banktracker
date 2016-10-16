@@ -1,8 +1,9 @@
 'use strict';
 
 import statement from './statement';
-import StatementInput from './StatementInput';
+import StatementInput from './statementInput';
 import spendingTypes from './spendingTypes';
+import VerticalBarGraph from './verticalBarGraph';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -20,4 +21,9 @@ bySpendingType$.subscribe(bst => console.log(bst));
 ReactDOM.render(
   <StatementInput Subject={statements$} />,
   document.getElementById('statement-adder')
+);
+
+ReactDOM.render(
+  <VerticalBarGraph Data={bySpendingType$} />,
+  document.getElementById('by-spending-type')
 );
