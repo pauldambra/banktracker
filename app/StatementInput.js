@@ -6,12 +6,13 @@ export default class StatementInput extends React.Component {
   constructor(props) {
     super(props);    
     this.state = {};
+    this.subject = props.Subject;
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
     this.setState({value: event.target.value});
-    console.log(event);
+    this.subject.onNext(event.target);
   }
 
   render() {

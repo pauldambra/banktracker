@@ -28,4 +28,4 @@ const parseStatement = txt => {
   return result;
 }
 
-export default parseStatement
+export default { parse: parseStatement };
