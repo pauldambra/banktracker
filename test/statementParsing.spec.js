@@ -20,4 +20,16 @@ describe('statement parsing', function() {
             }
         );
     });
+
+    it('should cope with types with spaces in their names', function() {
+        statement.parse(text)[4]
+        .should.deepEqual(
+            {
+                date: '19/10/2016',
+                type: 'child benefit',
+                amount: 30,
+                balance: 98
+            }
+        );
+    });
 })

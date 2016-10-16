@@ -1,5 +1,6 @@
+'use strict';
 
-const splitLine = l => l.split(/\s+/)
+const splitLine = l => l.split(/\s{2,}/)
                         .filter(i => i != '');
 
 const coerceAsMoney = m => {
