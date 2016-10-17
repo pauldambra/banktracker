@@ -14,7 +14,7 @@ body {
   padding: .1em 1em;
 }
 
-btn {
+.add-statement a {
   border: 1px solid #000000;
   border-radius: 5px;
   cursor: pointer;
@@ -48,6 +48,39 @@ footer {
 .right {}
 
 
+/* graph */
+
+#graph {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.bar {
+  background-color: red;
+  height: 100%;
+  width: 20%;
+  position: relative;
+}
+
+.left-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid black;
+  padding-right: 7.5px;
+}
+
+.center-axis {
+  width: 96%;
+  border-bottom: solid 1px black;
+  position: relative;
+  top: 125px;
+  left: 33px;
+}
+/* end graph*/
 /* 
 modal dialog
 */
