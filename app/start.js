@@ -1,6 +1,6 @@
 'use strict';
 
-import statement from './statement';
+import statement from './smileStatement';
 import StatementInput from './statementInput';
 import spendingTypes from './spendingTypes';
 import VerticalBarGraph from './verticalBarGraph';

@@ -8,6 +8,10 @@ const spendingTypesResults = new Rx.Subject();
 const reduceIntoResults = s => {
 
   s = reduce(s, (acc, el) => {
+    if (!el || !el.type) {
+      console.log(el, 'wat');
+    }
+
     if (!acc[el.type]) {
       acc[el.type] = el.amount;
     } else {
