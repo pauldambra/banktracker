@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, render } from 'enzyme';
-import StatementInput from '../app/statementInput';
+import StatementInput from '../../app/input/statementInput';
 import Rx from 'rx';
 
 describe('the Statement input', function() {

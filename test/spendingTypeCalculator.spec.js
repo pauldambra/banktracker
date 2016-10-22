@@ -1,6 +1,6 @@
 import Rx from 'rx';
 
-import spendingTypes from '../app/spendingTypes';
+import { totalSpendingTypes } from '../app/spendingTypes';
 
 const expectedResults = {
   switch: -32,
@@ -36,15 +36,8 @@ const statementInput = [
 ];
 
 describe('spending type calculator', function() {
-  it('groups data by type', function(done) {
-    var statements$ = new Rx.Subject();
-
-    spendingTypes.totalOn(statements$);
-    spendingTypes.results$.subscribe(r => {
-      r.should.be.eql(expectedResults);
-      done();
-    });
-
-    statements$.onNext(statementInput);
+  it('groups data by type', function() {
+    const result = totalSpendingTypes(statementInput);
+    result.should.be.eql(expectedResults);
   });
 });

@@ -1,31 +1,33 @@
 'use strict';
 
-import Rx from 'rx';
 import { reduce } from 'lodash';
 
-const spendingTypesResults = new Rx.Subject();
-
-const reduceIntoResults = s => {
-
-  s = reduce(s, (acc, el) => {
-    if (!el || !el.type) {
-      console.log(el, 'wat');
-    }
-
-    if (!acc[el.type]) {
-      acc[el.type] = el.amount;
-    } else {
-      acc[el.type] += el.amount;
-    }
+export const totalSpendingTypes = s => {
+  return reduce(s, (acc, el) => {
+    acc[el.type] = (acc[el.type] += el.amount) || el.amount;
     return acc;
   }, {});
-  spendingTypesResults.onNext(s);
 };
 
+const splitDateWindow = dw => {
+  const month = dw.split('/')[0];
+  const year = dw.split('/')[1];
+  return {month, year};
+}
 
-export default {
-  totalOn: s$ => {
-    s$.subscribe(reduceIntoResults);
-  },
-  results$: spendingTypesResults
+const dateWindowIsValid = dw => {
+  const d = splitDateWindow(dw);
+  return Number.isSafeInteger(d.month) && Number.isSafeInteger(d.year);
+}
+
+const prepareSpendingTypesForDisplay = pair => {
+  const d = splitDateWindow(pair[0]);
+  return totalSpendingTypes(pair[1][d.year][d.month]);
+};
+
+export const spendingTypesForDisplayFrom = dataForDisplay$ => {
+  console.log('setting up thingy')
+  return dataForDisplay$
+    .filter(pair => !dateWindowIsValid(pair[0]))
+    .map(pair => prepareSpendingTypesForDisplay(pair));
 };

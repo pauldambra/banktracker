@@ -20,5 +20,15 @@ write_to_dist: copy_index bundle_javascript copy_styles
 
 build: clean_dist write_to_dist
 
-dev: build
+watchman:
+	watchman-make -p 'index.html' -t copy_index -p 'app/**/*.js' -t bundle_javascript -p 'app/**/*.css' -t copy_styles
+
+live_reload:
+	./node_modules/.bin/livereload ./dist
+
+run_server:
 	cd dist && python -m SimpleHTTPServer
+
+watch: write_to_dist run_server watchman live_reload
+
+dev: build run_server

@@ -1,29 +1,29 @@
 'use strict';
 
-import statement from './smileStatement';
-import StatementInput from './statementInput';
-import spendingTypes from './spendingTypes';
+import StatementInput from './input/statementInput';
 import VerticalBarGraph from './verticalBarGraph';
-
+import DateSlider from './dates/dateSlider'
+import { spendingTypesForDisplayFrom } from './spendingTypes';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Rx from 'rx';
 
-const statements$ = new Rx.Subject();
-
-const parsedStatements$ = statements$
-  .map(s => statement.parse(s.value));
-
-spendingTypes.totalOn(parsedStatements$);
-const bySpendingType$ = spendingTypes.results$;
-bySpendingType$.subscribe(bst => console.log(bst));
+import * as statementRouter from './statementRouter';
 
 ReactDOM.render(
-  <StatementInput Subject={statements$} />,
+  <StatementInput Subject={statementRouter.statements$} />,
   document.getElementById('statement-adder')
 );
 
 ReactDOM.render(
-  <VerticalBarGraph Data={bySpendingType$} />,
+  <DateSlider InboundData={statementRouter.parsedStatements$} OutboundData={statementRouter.dateWindow$} />,
+  document.getElementById('date-slider-wrapper')
+);
+
+ReactDOM.render(
+  <VerticalBarGraph Data={statementRouter.spendingTypesForDisplay$} />,
   document.getElementById('by-spending-type')
 );
+
+statementRouter.parsedStatements$.subscribe(x => console.log(x, 'ps'));
+statementRouter.dataForDisplay$.subscribe(x => console.log(x, 'dfd'));
+statementRouter.spendingTypesForDisplay$.subscribe(x => console.log(x, 'stfd'));
