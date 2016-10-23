@@ -1,3 +1,10 @@
+$palette-white: white;
+$palette-black: black;
+$palette-green: #588c7e;
+$palette-yellow: #f2e394;
+$palette-orange: #f2ae72;
+$palette-red: #d96459;
+$palette-dark-red: #8c4646;
 
 html {
   font-size: 16px;
@@ -15,7 +22,8 @@ body {
 }
 
 .add-statement a {
-  border: 1px solid #000000;
+  border: 1px solid $palette-dark-red;
+  background: $palette-orange;
   border-radius: 5px;
   cursor: pointer;
   padding: .25em;
@@ -25,10 +33,10 @@ header {
   align-self: flex-start;
   height: 55px;
   width: 100%;
-}
 
-header h1 {
-  margin: 0;
+  h1 {
+    margin: 0;
+  }
 }
 
 #main-wrapper {
@@ -44,8 +52,6 @@ footer {
   width: 100%;
 }
 
-/* graph */
-
 #graph {
   display: flex;
   flex-direction: row;
@@ -55,32 +61,32 @@ footer {
 }
 
 .bar {
-  background-color: red;
-  height: 100%;
+  background-color: $palette-green;
+  margin-right: .25em;
   position: relative;
+  text-align: center;
   width: 20%;
 }
 
 .left-axis {
-  border-right: 1px solid black;
+  border-right: 1px solid $palette-black;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-right: 7.5px;
+  padding-right: .25em;
+  width: 4em;
 }
 
 .center-axis {
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px $palette-black;
   left: 33px;
   position: relative;
   top: 125px;
   width: 96%;
 }
-/* end graph*/
 
-/* modal dialog */
 .modal-dialog {
-  background: rgba(12, 58, 66, 0.6);
+  background: rgba($palette-yellow, .6);
   bottom: 0;
   font-family: Arial, Helvetica, sans-serif;
   left: 0;
@@ -91,23 +97,27 @@ footer {
   top: 0;
   transition: opacity 400ms ease-in;
   z-index: 99999;
-}
 
-.modal-dialog:target {
-  opacity: 1;
-  pointer-events: auto;
-}
+  &:target {
+    opacity: 1;
+    pointer-events: auto;
+  }
 
-.modal-dialog > div {
-  background: linear-gradient(#dbe2e2, #c7c3c3);
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  height: 80%;
-  margin: 6% auto;
-  padding: 5px 20px 13px;
-  position: relative;
-  width: 85%;
+  > div {
+    background: linear-gradient($palette-orange, $palette-yellow);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    margin: 6% auto;
+    padding: 5px 20px 13px;
+    position: relative;
+    width: 85%;
+  }
+
+  textarea {
+    width: 100%;
+  }
 }
 
 #statement-adder {
@@ -115,15 +125,11 @@ footer {
   flex-grow: 3;
 }
 
-.modal-dialog textarea {
-  width: 100%;
-}
-
 .close {
-  background: #606061;
+  background: $palette-red;
   border-radius: 12px;
-  box-shadow: 1px 1px 3px #000;
-  color: #FFFFFF;
+  box-shadow: 1px 1px 3px $palette-black;
+  color: $palette-white;
   font-weight: bold;
   line-height: 25px;
   position: absolute;
@@ -132,33 +138,27 @@ footer {
   text-decoration: none;
   top: -10px;
   width: 24px;
+
+  &:hover {
+    background: $palette-dark-red;
+  }
 }
 
-.close:hover {
-  background: #00d9ff;
-}
-/*
-end modal dialog
-*/
-
-/* date slider */
 .date-slider {
   margin: auto;
   width: 95%;
-}
 
-.date-slider > div * {
-  height: 28px;
-  line-height: 28px;
-  vertical-align: middle;
-}
+  > div * {
+    height: 28px;
+    line-height: 28px;
+    vertical-align: middle;
+  }
 
-.date-slider input {
-  width: 90%;
+  input {
+    width: 90%;
+  }
 }
 
 .current-date {
   text-align: center;
 }
-
-/* end date slider */

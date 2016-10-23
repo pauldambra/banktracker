@@ -35,11 +35,13 @@ const createRange = (min, max) => {
 
   if (max < 0) { max = 0; }
 
-  const step = (max - min) / 10;
+  const step = (max - min) / 8;
 
   const range = rangeRight(min, max, step);
   range.unshift(max);
-  return range;
+
+  return range.map(r => r.toFixed(0))
+              .map(r => '£ '+r);
 }
 
 class VerticalAxis extends React.Component {

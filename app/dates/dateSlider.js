@@ -51,7 +51,7 @@ export default class DateSlider extends React.Component {
           />
         <DateSpan d={startDate} clazz="startDate" />
       </div>
-      <div className="current-date">{currentDate}</div>
+      <div className="current-date">Showing: {currentDate}</div>
     </div>);
   }
 }

@@ -13,15 +13,15 @@ copy_index:
 bundle_javascript:
 	./node_modules/.bin/browserify --entry ./app/start.js --outfile ./dist/bundle.js --transform [ babelify ]
 
-copy_styles:
-	cp ./app/styles/styles.css ./dist/styles.css
+compile_styles:
+	./node_modules/.bin/node-sass --output-style compressed --source-map true ./app/styles/styles.scss > ./dist/styles.css
 
-write_to_dist: copy_index bundle_javascript copy_styles
+write_to_dist: copy_index bundle_javascript compile_styles
 
 build: clean_dist write_to_dist
 
 watchman:
-	watchman-make -p 'index.html' -t copy_index -p 'app/**/*.js' -t bundle_javascript -p 'app/**/*.css' -t copy_styles
+	watchman-make -p 'index.html' -t copy_index -p 'app/**/*.js' -t bundle_javascript -p 'app/**/*.scss' -t compile_styles
 
 live_reload:
 	./node_modules/.bin/livereload ./dist
