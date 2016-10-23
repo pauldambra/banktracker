@@ -15,7 +15,7 @@ export default class DateSlider extends React.Component {
   }
 
   componentDidMount() {
-      this.inboundData.subscribe(d => this.setState({dateRange: d}));
+    this.inboundData.subscribe(d => this.setState({dateRange: d}));
   }
 
   handleChange(e) {
@@ -35,7 +35,7 @@ export default class DateSlider extends React.Component {
       this.state.dateRange ? this.state.dateRange.end : '';
 
     const currentDate = mappedDate || '?';
-
+    
     if (currentDate !== '?') {
       this.outboundData.onNext(currentDate);
     }
@@ -51,7 +51,7 @@ export default class DateSlider extends React.Component {
           />
         <DateSpan d={startDate} clazz="startDate" />
       </div>
-      <div className="currentDate">{currentDate}</div>
+      <div className="current-date">{currentDate}</div>
     </div>);
   }
 }

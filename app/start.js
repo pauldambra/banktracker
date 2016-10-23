@@ -15,7 +15,7 @@ ReactDOM.render(
 );
 
 ReactDOM.render(
-  <DateSlider InboundData={statementRouter.parsedStatements$} OutboundData={statementRouter.dateWindow$} />,
+  <DateSlider InboundData={statementRouter.datesAvailable$} OutboundData={statementRouter.dateChoices$} />,
   document.getElementById('date-slider-wrapper')
 );
 
@@ -25,5 +25,5 @@ ReactDOM.render(
 );
 
 statementRouter.parsedStatements$.subscribe(x => console.log(x, 'ps'));
-statementRouter.dataForDisplay$.subscribe(x => console.log(x, 'dfd'));
-statementRouter.spendingTypesForDisplay$.subscribe(x => console.log(x, 'stfd'));
+statementRouter.dataForDisplay$.subscribe(y => console.log(y, 'dfd'));
+statementRouter.spendingTypesForDisplay$.subscribe(z => console.log(z, 'stfd'));

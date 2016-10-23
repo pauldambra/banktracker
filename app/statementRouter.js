@@ -10,7 +10,7 @@ export const parsedStatements$ =
 
 export const datesAvailable$ = 
   parsedStatements$
-    .map(ps => getDateInformation(ps));
+  .map(ps => getDateInformation(ps));
 
 export const dateChoices$ = new Rx.Subject();
 
@@ -21,6 +21,4 @@ export const spendingTypesForDisplay$ = new Rx.Subject();
 
 var dataStream$ = spendingTypesForDisplayFrom(dataForDisplay$);
 
-dataStream$.subscribe(s => {
-  spendingTypesForDisplay.onNext(s);
-});
+dataStream$.subscribe(s => spendingTypesForDisplay$.onNext(s));

@@ -26,7 +26,6 @@ const prepareSpendingTypesForDisplay = pair => {
 };
 
 export const spendingTypesForDisplayFrom = dataForDisplay$ => {
-  console.log('setting up thingy')
   return dataForDisplay$
     .filter(pair => !dateWindowIsValid(pair[0]))
     .map(pair => prepareSpendingTypesForDisplay(pair));

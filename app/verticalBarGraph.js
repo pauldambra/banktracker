@@ -35,7 +35,9 @@ const createRange = (min, max) => {
 
   if (max < 0) { max = 0; }
 
-  const range = rangeRight(min, max, 10);
+  const step = (max - min) / 10;
+
+  const range = rangeRight(min, max, step);
   range.unshift(max);
   return range;
 }
@@ -66,10 +68,7 @@ export default class VerticalBarGraph extends React.Component {
     super(props);    
     this.state = {};
     this.data = props.Data;
-  }
-
-  componentDidMount() {
-      this.data.subscribe(d => this.setState(d));
+    this.data.subscribe(d => this.setState(d));
   }
 
   render() {

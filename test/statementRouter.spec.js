@@ -14,7 +14,7 @@ const text = `date,description,type,money in,money out,balance
 2016-11-16,c,dd,,10,54
 `;
 
-describe.only('the statement router', function() {
+describe('the statement router', function() {
   it('provides parsed statements when unparsed statements arrive', function(done) {
     const subscription = statementRouter.parsedStatements$.subscribe(ps => {
       shouldExist(ps);
@@ -34,8 +34,19 @@ describe.only('the statement router', function() {
     statementRouter.statements$.onNext({value: text});
   });
 
-  it('provides spending type aggregated data when a date choice is made', function(done) {
+  it('provides data for display when a date choice is made', function(done) {
     const subscription = statementRouter.dataForDisplay$.subscribe(stfd => {
+      shouldExist(stfd);
+      subscription.dispose();
+      done()
+    });
+
+    statementRouter.statements$.onNext({value: text});
+    statementRouter.dateChoices$.onNext('10/2016');
+  });
+
+  it('provides spending type aggregated data when data is available for display', function(done) {
+    const subscription = statementRouter.spendingTypesForDisplay$.subscribe(stfd => {
       shouldExist(stfd);
       subscription.dispose();
       done()
