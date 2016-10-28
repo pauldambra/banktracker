@@ -33,7 +33,7 @@ describe('the date slider', function() {
 
   it('sets its current value to the latest date when first setup', function() {
     inbound$.onNext(inputData)
-    wrapper.find('.current-date').text().should.be.exactly('11/2016');
+    wrapper.find('.current-date').text().should.be.exactly('Showing: 11/2016');
   });
 
   // 9/14, 10/14, 11/14, 12/14, 01/15 ... 11/16 == 26 months

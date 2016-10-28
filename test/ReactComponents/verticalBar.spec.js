@@ -31,8 +31,8 @@ describe('the vertical bar graph', function() {
                           .map(p => p.html())
                           .map(p => p.replace('<div class="point">', ''))
                           .map(p => p.replace('</div>', ''));
-    points[0].should.be.exactly('30');
-    points[points.length-1].should.be.exactly('-20');
+    points[0].should.be.exactly('£ 30');
+    points[points.length-1].should.be.exactly('£ -20');
   });
 
   it('can calculate proportion of height to 0 for center axis', function() {
@@ -47,7 +47,7 @@ describe('the vertical bar graph', function() {
                       .map(p => p.html())
                       .map(p => p.replace('<div class="point">', ''))
                       .map(p => p.replace('</div>', ''));
-    points[0].should.be.exactly('0');
+    points[0].should.be.exactly('£ 0');
   });
 
   it('can set top for a positive bar', function() {

@@ -39,9 +39,9 @@ export default class DateSlider extends React.Component {
     if (currentDate !== '?') {
       this.outboundData.onNext(currentDate);
     }
-    
+
     return (<div className="date-slider">
-      <div>
+      <div className="slider-wrapper">
         <DateSpan d={endDate} clazz="endDate" />
         <input type="range"
           onChange={this.handleChange}

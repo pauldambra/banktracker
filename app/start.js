@@ -3,6 +3,8 @@
 import StatementInput from './input/statementInput';
 import VerticalBarGraph from './verticalBarGraph';
 import DateSlider from './dates/dateSlider'
+import ComparisonGauge from './comparisonGauge'
+
 import { spendingTypesForDisplayFrom } from './spendingTypes';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -24,6 +26,7 @@ ReactDOM.render(
   document.getElementById('by-spending-type')
 );
 
-statementRouter.parsedStatements$.subscribe(x => console.log(x, 'ps'));
-statementRouter.dataForDisplay$.subscribe(y => console.log(y, 'dfd'));
-statementRouter.spendingTypesForDisplay$.subscribe(z => console.log(z, 'stfd'));
+ReactDOM.render(
+  <ComparisonGauge Data={statementRouter.totalsForComparison$} caption="money in vs. money out"/>,
+  document.getElementById('totals-for-comparison')
+);

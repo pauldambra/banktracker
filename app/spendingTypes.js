@@ -1,6 +1,7 @@
 'use strict';
 
 import { reduce } from 'lodash';
+import { splitDateWindow, dateWindowIsValid } from './dates/dateWindow';
 
 export const totalSpendingTypes = s => {
   return reduce(s, (acc, el) => {
@@ -8,17 +9,6 @@ export const totalSpendingTypes = s => {
     return acc;
   }, {});
 };
-
-const splitDateWindow = dw => {
-  const month = dw.split('/')[0];
-  const year = dw.split('/')[1];
-  return {month, year};
-}
-
-const dateWindowIsValid = dw => {
-  const d = splitDateWindow(dw);
-  return Number.isSafeInteger(d.month) && Number.isSafeInteger(d.year);
-}
 
 const prepareSpendingTypesForDisplay = pair => {
   const d = splitDateWindow(pair[0]);

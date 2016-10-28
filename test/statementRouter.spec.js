@@ -55,4 +55,15 @@ describe('the statement router', function() {
     statementRouter.statements$.onNext({value: text});
     statementRouter.dateChoices$.onNext('10/2016');
   });
+
+  it('provides totals for comparison aggregated data when data is available for display', function(done) {
+    const subscription = statementRouter.totalsForComparison$.subscribe(tfc => {
+      shouldExist(tfc);
+      subscription.dispose();
+      done()
+    });
+
+    statementRouter.statements$.onNext({value: text});
+    statementRouter.dateChoices$.onNext('10/2016');
+  });
 });

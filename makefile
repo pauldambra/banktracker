@@ -14,16 +14,19 @@ bundle_javascript:
 	./node_modules/.bin/browserify --entry ./app/start.js --outfile ./dist/bundle.js --transform [ babelify ]
 
 compile_styles:
-	./node_modules/.bin/node-sass --output-style compressed --source-map true ./app/styles/styles.scss > ./dist/styles.css
+	./node_modules/.bin/node-sass --output-style compressed ./app/styles/styles.scss > ./dist/styles.css
+
+post_css: compile_styles
+	./node_modules/.bin/postcss  --use autoprefixer --autoprefixer.browsers "last 2 versions" --output ./dist/styles.css ./dist/styles.css
 
 write_to_dist: copy_index bundle_javascript compile_styles
 
 build: clean_dist write_to_dist
 
 watchman:
-	watchman-make -p 'index.html' -t copy_index -p 'app/**/*.js' -t bundle_javascript -p 'app/**/*.scss' -t compile_styles
+	watchman-make -p 'index.html' -t copy_index -p 'app/**/*.js' -t bundle_javascript -p 'app/**/*.scss' -t post_css
 
-live_reload:
+live_reload: bundle_javascript
 	./node_modules/.bin/livereload ./dist
 
 run_server:
