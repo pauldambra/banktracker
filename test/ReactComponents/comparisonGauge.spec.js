@@ -1,7 +1,7 @@
 import React from 'react';
 import Rx from 'rx';
 import { mount } from 'enzyme';
-import ComparisonGauge from '../../app/comparisonGauge';
+import ComparisonGauge from '../../app/comparisonGauge.component';
 
 describe('the comparison gauge', function() {
   it('should set the style of the gauge to show the relative values provided in props', function() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import Rx from 'rx';
-import DateSlider from '../../app/dates/dateSlider.js'
+import DateSlider from '../../app/dates/dateSlider.component'
 
 describe('the date slider', function() {
   const inputData = {

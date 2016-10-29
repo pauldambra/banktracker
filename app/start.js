@@ -4,11 +4,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Rx from 'rx';
 
-import StatementInput from './input/statementInput';
-import StatementTypeSwitch from './input/statementTypeSwitch';
-import VerticalBarGraph from './verticalBarGraph';
-import DateSlider from './dates/dateSlider'
-import ComparisonGauge from './comparisonGauge'
+import StatementInput from './input/statementInput.component';
+import StatementTypeSwitch from './input/statementTypeSwitch.component';
+import VerticalBarGraph from './verticalBarGraph.component';
+import DateSlider from './dates/dateSlider.component'
+import ComparisonGauge from './comparisonGauge.component'
 
 import { spendingTypesForDisplayFrom } from './spendingTypes';
 import statementRouter from './statementRouter';

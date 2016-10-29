@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import VerticalBarGraph from '../../app/verticalBarGraph';
+import VerticalBarGraph from '../../app/verticalBarGraph.component';
 import Rx from 'rx';
 
 describe('the vertical bar graph', function() {
