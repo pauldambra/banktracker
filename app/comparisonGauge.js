@@ -1,16 +1,18 @@
 'use strict';
 
 import React from 'react';
-//import { toPairs, max, min, rangeRight } from 'lodash';
 
 const containerHeight = 250;
+
+const stripLeadingZero = t => t.replace(/^0\./, '\.');
+const stripTrailingZero = t => t.replace(/(\.\d)0$/, '$1');
 
 const ratioForCss = s => {
   let ratio = s.moneyIn / (s.moneyIn+s.moneyOut);
   ratio = ratio / 2; //turn goes 0 to 1 and a gauge is half a circle
   ratio = ratio.toFixed(2);
-  ratio = ratio.replace(/^0\./, '\.'); //strip leading zero
-  ratio = ratio.replace(/(\.\d)0$/, '$1'); //strip trailing zero
+  ratio = stripLeadingZero(ratio);
+  ratio = stripTrailingZero(ratio);
   return ratio;
 }
 
@@ -34,6 +36,7 @@ export default class ComparisonGauge extends React.Component {
 
     return <div className="comparison-gauge">
             <figure>
+              <div style={{fontSize: '1.5em'}}>{this.props.title}</div>
               <div className="gauge">
                 <div className="meter" style={rotation}>
                 </div>

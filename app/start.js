@@ -43,12 +43,14 @@ ReactDOM.render(
 
 ReactDOM.render(
   <ComparisonGauge Data={statementRouter.currentAccount.totalsForComparison$} 
-                   caption="money in vs. money out - current"/>,
+                  title = "Current Account"
+                  caption="money in vs. money out"/>,
   document.getElementById('currentaccount-totals-for-comparison')
 );
 
 ReactDOM.render(
   <ComparisonGauge Data={statementRouter.savingsAccount.totalsForComparison$} 
-                   caption="money in vs. money out - savings"/>,
+                  title = "Savings Account"
+                  caption="money in vs. money out"/>,
   document.getElementById('savingsaccount-totals-for-comparison')
 );
