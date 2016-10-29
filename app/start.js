@@ -21,15 +21,15 @@ ReactDOM.render(
 );
 
 ReactDOM.render(
-  <StatementInput CurrentAccount={statementRouter.currentAccount.statements$} 
-                  SavingsAccount={statementRouter.savingsAccount.statements$}
-                  StatementTypeChoices={statementTypeChoices$} />,
+  <StatementInput currentAccount={statementRouter.currentAccount.statements$} 
+                  savingsAccount={statementRouter.savingsAccount.statements$}
+                  statementTypeChoices={statementTypeChoices$} />,
   document.getElementById('statement-adder')
 );
 
 ReactDOM.render(
-  <DateSlider InboundData={statementRouter.currentAccount.datesAvailable$} 
-              OutboundData={[
+  <DateSlider inboundData={statementRouter.currentAccount.datesAvailable$} 
+              outboundDataStreams={[
                 statementRouter.currentAccount.dateChoices$,
                 statementRouter.savingsAccount.dateChoices$,
               ]} />,
@@ -37,19 +37,19 @@ ReactDOM.render(
 );
 
 ReactDOM.render(
-  <VerticalBarGraph Data={statementRouter.currentAccount.spendingTypesForDisplay$} />,
+  <VerticalBarGraph data={statementRouter.currentAccount.spendingTypesForDisplay$} />,
   document.getElementById('by-spending-type')
 );
 
 ReactDOM.render(
-  <ComparisonGauge Data={statementRouter.currentAccount.totalsForComparison$} 
+  <ComparisonGauge data={statementRouter.currentAccount.totalsForComparison$} 
                   title = "Current Account"
                   caption="money in vs. money out"/>,
   document.getElementById('currentaccount-totals-for-comparison')
 );
 
 ReactDOM.render(
-  <ComparisonGauge Data={statementRouter.savingsAccount.totalsForComparison$} 
+  <ComparisonGauge data={statementRouter.savingsAccount.totalsForComparison$} 
                   title = "Savings Account"
                   caption="money in vs. money out"/>,
   document.getElementById('savingsaccount-totals-for-comparison')

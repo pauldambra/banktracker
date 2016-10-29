@@ -15,7 +15,7 @@ describe('the vertical bar graph', function() {
 
   beforeEach(function() {
     subject = new Rx.Subject();
-    wrapper = mount(<VerticalBarGraph Data={subject} />);
+    wrapper = mount(<VerticalBarGraph data={subject} />);
   });
 
   it('can show data', function() {

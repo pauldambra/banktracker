@@ -2,6 +2,15 @@
 
 import React from 'react';
 import { toPairs, max, min, rangeRight } from 'lodash';
+import { Subject } from 'rx';
+
+const graphPropTypes = {
+  data: React.PropTypes.instanceOf(Subject).isRequired
+};
+
+const verticalAxisPropTypes = {
+  range: React.PropTypes.array
+};
 
 const containerHeight = 250;
 
@@ -65,11 +74,13 @@ class VerticalAxis extends React.Component {
   }
 }
 
+VerticalAxis.propTypes = verticalAxisPropTypes
+
 export default class VerticalBarGraph extends React.Component {
   constructor(props) {
     super(props);    
     this.state = {};
-    this.data = props.Data;
+    this.data = props.data;
     this.data.subscribe(d => this.setState(d));
   }
 
@@ -94,3 +105,5 @@ export default class VerticalBarGraph extends React.Component {
           </div>
   }
 }
+
+VerticalBarGraph.propTypes = graphPropTypes;

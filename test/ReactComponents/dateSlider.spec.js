@@ -24,7 +24,7 @@ describe('the date slider', function() {
     inbound$ = new Rx.Subject();
     one$ = new Rx.Subject();
     two$ = new Rx.Subject();
-    wrapper = mount(<DateSlider InboundData={inbound$} OutboundData={[one$, two$]} />);
+    wrapper = mount(<DateSlider inboundData={inbound$} outboundDataStreams={[one$, two$]} />);
   });
 
   it('sets its bounds when data received', function() {

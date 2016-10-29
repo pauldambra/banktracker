@@ -1,6 +1,11 @@
 'use strict';
 
 import React from 'react';
+import { Subject } from 'rx';
+
+const propTypes = {
+  output: React.PropTypes.instanceOf(Subject).isRequired
+};
 
 export default class StatementTypeSwitch extends React.Component {
   constructor(props) {
@@ -37,3 +42,5 @@ export default class StatementTypeSwitch extends React.Component {
     );
   }
 }
+
+StatementTypeSwitch.propTypes = propTypes;

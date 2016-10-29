@@ -1,16 +1,22 @@
 
 import React from 'react';
+import { MapObservable } from 'rx';
 
 const DateSpan = props => {
   return <span className={props.clazz}>{props.d}</span>;
+};
+
+const propTypes = {
+  inboundData: React.PropTypes.instanceOf(MapObservable).isRequired,
+  outboundDataStreams: React.PropTypes.array.isRequired
 };
 
 export default class DateSlider extends React.Component {
   constructor(props) {
     super(props);    
     this.state = {currentDate: 0, currentValue: 0};
-    this.inboundData = props.InboundData;
-    this.outboundDataStreams = props.OutboundData;
+    this.inboundData = props.inboundData;
+    this.outboundDataStreams = props.outboundDataStreams;
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -58,3 +64,5 @@ export default class DateSlider extends React.Component {
     </div>);
   }
 }
+
+DateSlider.propTypes = propTypes;

@@ -1,6 +1,13 @@
 'use strict';
 
 import React from 'react';
+import { Subject } from 'rx';
+
+const propTypes = {
+  data: React.PropTypes.instanceOf(Subject).isRequired,
+  title: React.PropTypes.string,
+  caption: React.PropTypes.string
+};
 
 const containerHeight = 250;
 
@@ -20,7 +27,7 @@ export default class ComparisonGauge extends React.Component {
   constructor(props) {
     super(props);
     this.state = {moneyIn: 0, moneyOut: 0};
-    this.data = props.Data;
+    this.data = props.data;
     this.data.subscribe(d => {
       if (d) this.setState(d)
     });
@@ -49,3 +56,5 @@ export default class ComparisonGauge extends React.Component {
           </div>
   }
 }
+
+ComparisonGauge.propTypes = propTypes;

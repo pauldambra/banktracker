@@ -27,9 +27,9 @@ describe('the Statement input', function() {
         savingsAccountMessages = [];
         savingsAccountSubscription = savingsAccount$.subscribe(s => savingsAccountMessages.push(s));
 
-        wrapper = shallow(<StatementInput CurrentAccount={currentAccount$}
-                                        SavingsAccount={savingsAccount$}
-                                        StatementTypeChoices={statementTypeChoices$} />);
+        wrapper = shallow(<StatementInput currentAccount={currentAccount$}
+                                        savingsAccount={savingsAccount$}
+                                        statementTypeChoices={statementTypeChoices$} />);
     });
 
     afterEach(function() {

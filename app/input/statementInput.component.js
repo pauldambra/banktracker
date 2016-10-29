@@ -1,15 +1,22 @@
 'use strict';
 
 import React from 'react';
+import {Subject} from 'rx';
+
+const propTypes = {
+  currentAccount: React.PropTypes.instanceOf(Subject).isRequired,
+  savingsAccount: React.PropTypes.instanceOf(Subject).isRequired,
+  statementTypeChoices: React.PropTypes.instanceOf(Subject).isRequired
+};
 
 export default class StatementInput extends React.Component {
   constructor(props) {
     super(props);    
     this.state = {};
-    this.currentAccount$ = props.CurrentAccount;
-    this.savingsAccount$ = props.SavingsAccount;
+    this.currentAccount$ = props.currentAccount;
+    this.savingsAccount$ = props.savingsAccount;
     
-    props.StatementTypeChoices.subscribe(stc => this.statementTypeChoice = stc);
+    props.statementTypeChoices.subscribe(stc => this.statementTypeChoice = stc);
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -34,3 +41,5 @@ export default class StatementInput extends React.Component {
     );
   }
 }
+
+StatementInput.propTypes = propTypes;

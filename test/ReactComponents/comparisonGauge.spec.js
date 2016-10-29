@@ -10,7 +10,7 @@ describe('the comparison gauge', function() {
     const expectedTurn = '.2turn'
     const expectedStyle = `style="transform: rotate(${expectedTurn})"`
 
-    let wrapper = mount(<ComparisonGauge Data={dataIn$} />);
+    let wrapper = mount(<ComparisonGauge data={dataIn$} />);
     dataIn$.onNext(nextData);
     
     const gauge = wrapper.find('.gauge');
@@ -18,7 +18,7 @@ describe('the comparison gauge', function() {
   });
 
   it('should set the caption', function() {
-    let wrapper = mount(<ComparisonGauge Data={new Rx.Subject()} caption="something provided"/>);
+    let wrapper = mount(<ComparisonGauge data={new Rx.Subject()} caption="something provided"/>);
     wrapper.find('figcaption').text().should.eql('something provided');
   });
 });
