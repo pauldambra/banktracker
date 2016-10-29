@@ -16,13 +16,15 @@ describe('the date slider', function() {
     };
 
   let inbound$;
-  let outbound$;
+  let one$;
+  let two$;
   let wrapper;
 
   beforeEach(function() {
     inbound$ = new Rx.Subject();
-    outbound$ = new Rx.Subject();
-    wrapper = mount(<DateSlider InboundData={inbound$} OutboundData={outbound$} />);
+    one$ = new Rx.Subject();
+    two$ = new Rx.Subject();
+    wrapper = mount(<DateSlider InboundData={inbound$} OutboundData={[one$, two$]} />);
   });
 
   it('sets its bounds when data received', function() {
@@ -52,13 +54,24 @@ describe('the date slider', function() {
   });
 
   it('tells subscribers the chosen date', function(done) {
-    const receivedDates = [];
-    outbound$.subscribe(o=> {
-      receivedDates.push(o);
-      if (receivedDates.length === 2) {
-        receivedDates.should.eql(['11/2016', '04/2016']);
-        done();
+    let oneStream = [];
+    let twoStream = [];
+
+    const testExpectation = _ => {
+      if (oneStream.length === 2 && twoStream.length === 2) {
+      oneStream.should.eql(['11/2016', '04/2016']);
+      twoStream.should.eql(['11/2016', '04/2016']);
+      done();
       }
+    };
+
+    one$.subscribe(os => {
+      oneStream.push(os);
+      testExpectation();
+    });
+    two$.subscribe(ts => {
+      twoStream.push(ts);
+      testExpectation();
     });
 
     inbound$.onNext(inputData);

@@ -1,6 +1,6 @@
 
-import * as statementRouter from '../app/statementRouter';
-import {exist as shouldExist} from 'should';
+import statementRouter from '../app/statementRouter';
+import should from 'should';
 
 const text = `date,description,type,money in,money out,balance
 2015-05-12,a,switch,,2,100
@@ -15,55 +15,104 @@ const text = `date,description,type,money in,money out,balance
 `;
 
 describe('the statement router', function() {
-  it('provides parsed statements when unparsed statements arrive', function(done) {
-    const subscription = statementRouter.parsedStatements$.subscribe(ps => {
-      shouldExist(ps);
-      subscription.dispose();
-      done();
+  describe('for current accounts', function() {
+    it('provides parsed statements when unparsed statements arrive', function(done) {
+      const subscription = statementRouter.currentAccount.parsedStatements$.subscribe(ps => {
+        should.exist(ps);
+        subscription.dispose();
+        done();
+      });
+      statementRouter.currentAccount.statements$.onNext({value: text});
     });
-    statementRouter.statements$.onNext({value: text});
+    
+    it('provides the date structure of the parsed statements', function(done) {
+      const subscription = statementRouter.currentAccount.datesAvailable$.subscribe(da => {
+        should.exist(da);
+        subscription.dispose();
+        done()
+      });
+
+      statementRouter.currentAccount.statements$.onNext({value: text});
+    });
+
+    it('provides data for display when a date choice is made', function(done) {
+      const subscription = statementRouter.currentAccount.dataForDisplay$.subscribe(stfd => {
+        should.exist(stfd);
+        subscription.dispose();
+        done()
+      });
+
+      statementRouter.currentAccount.statements$.onNext({value: text});
+      statementRouter.currentAccount.dateChoices$.onNext('10/2016');
+    });
+
+    it('provides spending type aggregated data when data is available for display', function(done) {
+      const subscription = statementRouter.currentAccount.spendingTypesForDisplay$.subscribe(stfd => {
+        should.exist(stfd);
+        subscription.dispose();
+        done()
+      });
+
+      statementRouter.currentAccount.statements$.onNext({value: text});
+      statementRouter.currentAccount.dateChoices$.onNext('10/2016');
+    });
+
+    it('provides totals for comparison aggregated data when data is available for display', function(done) {
+      const subscription = statementRouter.currentAccount.totalsForComparison$.subscribe(tfc => {
+        should.exist(tfc);
+        subscription.dispose();
+        done()
+      });
+
+      statementRouter.currentAccount.statements$.onNext({value: text});
+      statementRouter.currentAccount.dateChoices$.onNext('10/2016');
+    });
   });
-  
-  it('provides the date structure of the parsed statements', function(done) {
-    const subscription = statementRouter.datesAvailable$.subscribe(da => {
-      shouldExist(da);
-      subscription.dispose();
-      done()
+
+  describe('for savings accounts', function() {
+    it('provides parsed statements when unparsed statements arrive', function(done) {
+      const subscription = statementRouter.savingsAccount.parsedStatements$.subscribe(ps => {
+        should.exist(ps);
+        subscription.dispose();
+        done();
+      });
+      statementRouter.savingsAccount.statements$.onNext({value: text});
+    });
+    
+    it('provides the date structure of the parsed statements', function(done) {
+      const subscription = statementRouter.savingsAccount.datesAvailable$.subscribe(da => {
+        should.exist(da);
+        subscription.dispose();
+        done()
+      });
+
+      statementRouter.savingsAccount.statements$.onNext({value: text});
     });
 
-    statementRouter.statements$.onNext({value: text});
-  });
+    it('provides data for display when a date choice is made', function(done) {
+      const subscription = statementRouter.savingsAccount.dataForDisplay$.subscribe(stfd => {
+        should.exist(stfd);
+        subscription.dispose();
+        done()
+      });
 
-  it('provides data for display when a date choice is made', function(done) {
-    const subscription = statementRouter.dataForDisplay$.subscribe(stfd => {
-      shouldExist(stfd);
-      subscription.dispose();
-      done()
+      statementRouter.savingsAccount.statements$.onNext({value: text});
+      statementRouter.savingsAccount.dateChoices$.onNext('10/2016');
     });
 
-    statementRouter.statements$.onNext({value: text});
-    statementRouter.dateChoices$.onNext('10/2016');
-  });
-
-  it('provides spending type aggregated data when data is available for display', function(done) {
-    const subscription = statementRouter.spendingTypesForDisplay$.subscribe(stfd => {
-      shouldExist(stfd);
-      subscription.dispose();
-      done()
+    it('does not provide spending type aggregated data when data is available for display', function() {
+      should.not.exist(statementRouter.savingsAccount.spendingTypesForDisplay$);
     });
 
-    statementRouter.statements$.onNext({value: text});
-    statementRouter.dateChoices$.onNext('10/2016');
-  });
+    it('provides totals for comparison aggregated data when data is available for display', function(done) {
+      const subscription = statementRouter.savingsAccount.totalsForComparison$.subscribe(tfc => {
+        should.exist(tfc);
+        subscription.dispose();
+        done()
+      });
 
-  it('provides totals for comparison aggregated data when data is available for display', function(done) {
-    const subscription = statementRouter.totalsForComparison$.subscribe(tfc => {
-      shouldExist(tfc);
-      subscription.dispose();
-      done()
+      statementRouter.savingsAccount.statements$.onNext({value: text});
+      statementRouter.savingsAccount.dateChoices$.onNext('10/2016');
     });
-
-    statementRouter.statements$.onNext({value: text});
-    statementRouter.dateChoices$.onNext('10/2016');
   });
 });

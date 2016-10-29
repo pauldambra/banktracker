@@ -21,6 +21,21 @@ body {
   padding: .1em 1em;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.equal-column {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.fill-row {
+  flex-grow: 20;
+}
+
 .add-statement a {
   background: $palette-orange;
   border: 1px solid $palette-dark-red;
@@ -124,7 +139,7 @@ footer {
 
 #statement-adder {
   display: flex;
-  flex-grow: 3;
+  flex-grow: 15;
 }
 
 .close {
@@ -143,6 +158,26 @@ footer {
 
   &:hover {
     background: $palette-dark-red;
+  }
+}
+
+#statement-type-switch {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+
+  label {
+    padding: 1em;
+    border-radius: 5px;
+    background-color: transparentize($palette-green, .5);
+
+    &:first-of-type {
+      margin-right: 1em;
+    }
+
+    &.active {
+      background-color: transparentize($palette-green, .1);
+    }
   }
 }
 
@@ -171,6 +206,7 @@ footer {
 }
 
 // comparison gauge
+
 %gauge-positioning {
   margin: .33rem;
   width: 10rem;

@@ -4,24 +4,65 @@ import { getDateInformation } from './dates/statementDates';
 import { spendingTypesForDisplayFrom } from './spendingTypes';
 import { totalsForComparisonFrom } from './totalsForComparison';
 
-export const statements$ = new Rx.Subject();
+class AccountStatment {
+ constructor() {
+  this._statements$ = new Rx.Subject();
+  this._parsedStatements$ = this._statements$.map(s => parse(s.value));
 
-export const parsedStatements$ = 
-  statements$.map(s => parse(s.value));
+  this._datesAvailable$ = this._parsedStatements$.map(ps => getDateInformation(ps));
 
-export const datesAvailable$ = 
-  parsedStatements$
-  .map(ps => getDateInformation(ps));
+  this._dateChoices$ = new Rx.Subject();
 
-export const dateChoices$ = new Rx.Subject();
+  this._dataForDisplay$ = Rx.Observable.combineLatest(this._dateChoices$, this._parsedStatements$);
 
-export const dataForDisplay$ = 
-  Rx.Observable.combineLatest(dateChoices$, parsedStatements$);
+  this._totalsForComparison$ = new Rx.Subject();
+  const totalsStream$ = totalsForComparisonFrom(this._dataForDisplay$);
+  totalsStream$.subscribe(s => this._totalsForComparison$.onNext(s));
+ }
 
-export const spendingTypesForDisplay$ = new Rx.Subject();
-var dataStream$ = spendingTypesForDisplayFrom(dataForDisplay$);
-dataStream$.subscribe(s => spendingTypesForDisplay$.onNext(s));
+ get statements$() {
+  return this._statements$;
+ }
 
-export const totalsForComparison$ = new Rx.Subject();
-var totalsStream$ = totalsForComparisonFrom(dataForDisplay$);
-totalsStream$.subscribe(s => totalsForComparison$.onNext(s));
+ get parsedStatements$() {
+  return this._parsedStatements$;
+ }
+
+ get datesAvailable$() {
+  return this._datesAvailable$;
+ }
+
+ get dateChoices$() {
+  return this._dateChoices$;
+ }
+
+ get dataForDisplay$() {
+  return this._dataForDisplay$;
+ }
+
+ get totalsForComparison$() {
+  return this._totalsForComparison$;
+ }
+}
+
+class CurrentAccountStatement extends AccountStatment {
+  constructor() {
+    super();
+    this._spendingTypesForDisplay$ = new Rx.Subject();
+    const spendingTypes$ = spendingTypesForDisplayFrom(this._dataForDisplay$);
+    spendingTypes$.subscribe(s => this._spendingTypesForDisplay$.onNext(s));
+  }
+
+  get spendingTypesForDisplay$() {
+    return this._spendingTypesForDisplay$;
+  }
+}
+
+export default {
+  currentAccount: new CurrentAccountStatement(),
+  savingsAccount: new AccountStatment()
+};
+
+
+
+

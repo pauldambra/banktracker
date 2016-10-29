@@ -10,7 +10,7 @@ export default class DateSlider extends React.Component {
     super(props);    
     this.state = {currentDate: 0, currentValue: 0};
     this.inboundData = props.InboundData;
-    this.outboundData = props.OutboundData;
+    this.outboundDataStreams = props.OutboundData;
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -37,7 +37,10 @@ export default class DateSlider extends React.Component {
     const currentDate = mappedDate || '?';
     
     if (currentDate !== '?') {
-      this.outboundData.onNext(currentDate);
+      for (var i = 0; i < this.outboundDataStreams.length; i++) {
+        const currentStream = this.outboundDataStreams[i];
+        currentStream.onNext(currentDate);
+      }
     }
 
     return (<div className="date-slider">

@@ -9,8 +9,8 @@
     <div id="open-modal" class="modal-dialog">
       <div> <a href="#close" title="Close" class="close">X</a>
 
-          <h2>Post your statement below</h2>
-
+          <h2>Paste your statement below</h2>
+          <div id="statement-type-switch"></div>
           <div id="statement-adder"></div>
       </div>
   </div>
@@ -18,9 +18,16 @@
         <h1>Bank Tracker</h1>
     </header>
     <div id="main-wrapper">
-      <div id="date-slider-wrapper"></div>
-      <div id="by-spending-type"></div>
-      <div id="totals-for-comparison"></div>
+      <div class="row">
+        <div id="date-slider-wrapper" class="fill-row"></div>
+      </div>
+      <div class="row">
+        <div id="currentaccount-totals-for-comparison" class="equal-column"></div>
+        <div id="savingsaccount-totals-for-comparison" class="equal-column"></div>
+      </div>
+      <div class="row">
+        <div id="by-spending-type" class="fill-row"></div>
+      </div>
     </div>
     <footer>
     <div class="left">

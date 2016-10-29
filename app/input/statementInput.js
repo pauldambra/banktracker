@@ -6,13 +6,23 @@ export default class StatementInput extends React.Component {
   constructor(props) {
     super(props);    
     this.state = {};
-    this.subject = props.Subject;
+    this.currentAccount$ = props.CurrentAccount;
+    this.savingsAccount$ = props.SavingsAccount;
+    
+    props.StatementTypeChoices.subscribe(stc => this.statementTypeChoice = stc);
+
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
     this.setState({value: event.target.value});
-    this.subject.onNext(event.target);
+    //defaults to current account
+    if (this.statementTypeChoice === 'savings') {
+      this.savingsAccount$.onNext(event.target);
+    } else {
+      this.currentAccount$.onNext(event.target);
+    }
+    
   }
 
   render() {
