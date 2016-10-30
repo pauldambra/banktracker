@@ -1,0 +1,46 @@
+@import '../styles/colours';
+@import 'modal-dialog';
+
+#statement-adder {
+  display: flex;
+  flex-grow: 15;
+}
+
+.close {
+  background: $palette-red;
+  border-radius: 12px;
+  box-shadow: 1px 1px 3px $palette-black;
+  color: $palette-white;
+  font-weight: bold;
+  line-height: 25px;
+  position: absolute;
+  right: -12px;
+  text-align: center;
+  text-decoration: none;
+  top: -10px;
+  width: 24px;
+
+  &:hover {
+    background: $palette-dark-red;
+  }
+}
+
+#statement-type-switch {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+
+  label {
+    background-color: transparentize($palette-green, .5);
+    border-radius: 5px;
+    padding: 1em;
+
+    &:first-of-type {
+      margin-right: 1em;
+    }
+
+    &.active {
+      background-color: transparentize($palette-green, .1);
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { Rx } from 'rx';
-import { spendingTypesForDisplayFrom } from '../app/spendingTypes';
+import { spendingTypesForDisplayFrom } from '../../app/spendingByType/spendingTypes';
 
 const input = [
   '10/2016', 

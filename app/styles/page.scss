@@ -1,0 +1,47 @@
+@import 'colours';
+
+html {
+  font-size: 16px;
+  height: 100vh;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  height: 100vh;
+  margin: 0;
+  padding: .1em 1em;
+}
+
+header {
+  align-self: flex-start;
+  height: 55px;
+  width: 100%;
+
+  h1 {
+    margin: 0;
+  }
+}
+
+#main-wrapper {
+  flex-grow: 3;
+}
+
+footer {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  height: 55px;
+  justify-content: space-between;
+  width: 100%;
+
+  .add-statement a {
+    background: $palette-orange;
+    border: 1px solid $palette-dark-red;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: .25em;
+  }
+}

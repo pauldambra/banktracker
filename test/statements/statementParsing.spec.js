@@ -1,5 +1,5 @@
 import should from 'should';
-import { parse } from '../app/input/smileStatement';
+import { parse } from '../../app/statements/smileStatement';
 
 const text = `date,description,type,money in,money out,balance
 2016-10-12,a,switch,,2,100

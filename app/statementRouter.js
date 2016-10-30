@@ -1,8 +1,8 @@
 import Rx from 'rx';
-import { parse } from './input/smileStatement';
+import { parse } from './statements/smileStatement';
 import { getDateInformation } from './dates/statementDates';
-import { spendingTypesForDisplayFrom } from './spendingTypes';
-import { totalsForComparisonFrom } from './totalsForComparison';
+import { spendingTypesForDisplayFrom } from './spendingByType/spendingTypes';
+import { totalsForComparisonFrom } from './moneyInAndOut/totalsForComparison';
 
 class AccountStatment {
  constructor() {

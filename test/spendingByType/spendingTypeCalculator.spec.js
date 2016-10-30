@@ -1,6 +1,6 @@
 import Rx from 'rx';
 
-import { totalSpendingTypes } from '../app/spendingTypes';
+import { totalSpendingTypes } from '../../app/spendingByType/spendingTypes';
 
 const expectedResults = {
   switch: -32,

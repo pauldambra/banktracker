@@ -1,5 +1,5 @@
 import Rx from 'rx';
-import { splitDateWindow, dateWindowIsValid } from './dates/dateWindow';
+import { splitDateWindow, dateWindowIsValid } from '../dates/dateWindow';
 import { reduce } from 'lodash';
 
 export const totalsForComparison = s => {

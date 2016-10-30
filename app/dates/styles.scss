@@ -1,0 +1,24 @@
+
+.date-slider {
+  margin: auto;
+
+  .slider-wrapper {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  > div * {
+    height: 28px;
+    line-height: 28px;
+    vertical-align: middle;
+  }
+
+  input {
+    width: 75%;
+  }
+}
+
+.current-date {
+  margin-bottom: 2em;
+  text-align: center;
+}

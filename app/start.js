@@ -4,13 +4,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Rx from 'rx';
 
-import StatementInput from './input/statementInput.component';
-import StatementTypeSwitch from './input/statementTypeSwitch.component';
-import VerticalBarGraph from './verticalBarGraph.component';
+import StatementInput from './statements/statementInput.component';
+import StatementTypeSwitch from './statements/statementTypeSwitch.component';
+import VerticalBarGraph from './spendingByType/verticalBarGraph.component';
 import DateSlider from './dates/dateSlider.component'
-import ComparisonGauge from './comparisonGauge.component'
+import ComparisonGauge from './moneyInAndOut/comparisonGauge.component'
 
-import { spendingTypesForDisplayFrom } from './spendingTypes';
+import { spendingTypesForDisplayFrom } from './spendingByType/spendingTypes';
 import statementRouter from './statementRouter';
 
 var statementTypeChoices$ = new Rx.Subject();

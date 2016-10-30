@@ -1,7 +1,7 @@
 'use strict';
 
 import { reduce } from 'lodash';
-import { splitDateWindow, dateWindowIsValid } from './dates/dateWindow';
+import { splitDateWindow, dateWindowIsValid } from '../dates/dateWindow';
 
 export const totalSpendingTypes = s => {
   return reduce(s, (acc, el) => {

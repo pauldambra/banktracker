@@ -1,0 +1,54 @@
+%gauge-positioning {
+  margin: .33rem;
+  width: 10rem;
+}
+
+.credit {
+  border-bottom: 1px solid $palette-green;
+}
+
+.debit {
+  border-bottom: 1px solid $palette-dark-red;
+}
+
+.gauge-caption {
+  @extend %gauge-positioning;
+
+  text-align: center;
+}
+
+.gauge {
+  @extend %gauge-positioning;
+
+  display: inline-block;
+  height: 5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.gauge::before,
+.gauge::after,
+.meter {
+  content: '';
+  display: block;
+  position: absolute;
+}
+
+.gauge::before,
+.meter {
+  height: 5rem;
+  width: 10rem;
+}
+
+.gauge::before {
+  background: $palette-dark-red;
+  border-radius: 5rem 5rem 0 0;
+}
+
+.meter {
+  background: $palette-green;
+  border-radius: 0 0 6rem 6rem;
+  top: 100%;
+  transform-origin: center top;
+  transition: 1s;
+}

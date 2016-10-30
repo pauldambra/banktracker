@@ -1,0 +1,36 @@
+@import '../styles/colours';
+
+#graph {
+  display: flex;
+  flex-direction: row;
+  height: 250px;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.bar {
+  background-color: $palette-green;
+  margin-right: .25em;
+  position: relative;
+  text-align: center;
+  transition: 1s;
+  width: 20%;
+}
+
+.left-axis {
+  border-right: 1px solid $palette-black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: .25em;
+  width: 15%;
+}
+
+.center-axis {
+  border-bottom: solid 1px $palette-black;
+  left: 33px;
+  position: relative;
+  top: 125px;
+  transition: 1s;
+  width: 96%;
+}
