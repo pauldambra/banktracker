@@ -2,7 +2,7 @@ import Rx from 'rx';
 import { parse } from './statements/smileStatement';
 import { getDateInformation } from './dates/statementDates';
 import { spendingTypesForDisplayFrom } from './spendingByType/spendingTypes';
-import { totalsForComparisonFrom } from './moneyInAndOut/totalsForComparison';
+import { totalsForComparisonFrom } from './moneyInAndOut/monthGauge/totalsForComparison';
 
 class AccountStatment {
  constructor() {

@@ -8,7 +8,7 @@ import StatementInput from './statements/statementInput.component';
 import StatementTypeSwitch from './statements/statementTypeSwitch.component';
 import VerticalBarGraph from './spendingByType/verticalBarGraph.component';
 import DateSlider from './dates/dateSlider.component'
-import ComparisonGauge from './moneyInAndOut/comparisonGauge.component'
+import ComparisonGauge from './moneyInAndOut/monthGauge/comparisonGauge.component'
 
 import { spendingTypesForDisplayFrom } from './spendingByType/spendingTypes';
 import statementRouter from './statementRouter';
