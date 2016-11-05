@@ -3,6 +3,7 @@ import { parse } from './statements/smileStatement';
 import { getDateInformation } from './dates/statementDates';
 import { spendingTypesForDisplayFrom } from './spendingByType/spendingTypes';
 import { totalsForComparisonFrom } from './moneyInAndOut/monthGauge/totalsForComparison';
+import {monthlyTotalsFrom} from './moneyInAndOut/sparkline/monthlyTotals';
 
 class AccountStatment {
  constructor() {
@@ -45,6 +46,19 @@ class AccountStatment {
  }
 }
 
+class SavingsAccountStatement extends AccountStatment {
+  constructor() {
+    super();
+    this._totalsByMonth$ = new Rx.Subject();
+    const monthlyTotals$ = monthlyTotalsFrom(this._dataForDisplay$);
+    monthlyTotals$.subscribe(s => this._totalsByMonth$.onNext(s));
+  }
+
+  get totalsByMonth$() {
+    return this._totalsByMonth$;
+  }
+}
+
 class CurrentAccountStatement extends AccountStatment {
   constructor() {
     super();
@@ -60,7 +74,7 @@ class CurrentAccountStatement extends AccountStatment {
 
 export default {
   currentAccount: new CurrentAccountStatement(),
-  savingsAccount: new AccountStatment()
+  savingsAccount: new SavingsAccountStatement()
 };
 
 

@@ -13,6 +13,7 @@ const isOneMonthApart = (l, r) => {
 const curryFlattenDateKeys = data => {
   return (acc, val, year) => {
     for (const month in val) {
+      if (month == 'month') { continue; }
       const startOfMonth = `${year}-${month}-1`;
       acc[startOfMonth] = data[year][month];
     }

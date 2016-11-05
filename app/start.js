@@ -9,6 +9,7 @@ import StatementTypeSwitch from './statements/statementTypeSwitch.component';
 import VerticalBarGraph from './spendingByType/verticalBarGraph.component';
 import DateSlider from './dates/dateSlider.component'
 import ComparisonGauge from './moneyInAndOut/monthGauge/comparisonGauge.component'
+import ComparisonSparkline from './moneyInAndOut/sparkline/comparisonSparkline.component'
 
 import { spendingTypesForDisplayFrom } from './spendingByType/spendingTypes';
 import statementRouter from './statementRouter';
@@ -26,6 +27,15 @@ ReactDOM.render(
                   statementTypeChoices={statementTypeChoices$} />,
   document.getElementById('statement-adder')
 );
+
+// entire date range items
+
+ReactDOM.render(
+  <ComparisonSparkline data={statementRouter.savingsAccount.totalsByMonth$} title="Savings Account" height={60}/>,
+  document.getElementById('savings-account-sparkline')
+  );
+
+// date window items
 
 ReactDOM.render(
   <DateSlider inboundData={statementRouter.currentAccount.datesAvailable$} 

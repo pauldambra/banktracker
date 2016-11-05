@@ -49,7 +49,7 @@ describe('the Statement input', function() {
         savingsAccountMessages.length.should.be.exactly(0);
     });
 
-    it('can receive paste text to the savings§ account', function() {
+    it('can receive paste text to the savings account', function() {
         statementTypeChoices$.onNext('savings');
 
         wrapper.simulate('change', { target: { value: 'this is input' } });

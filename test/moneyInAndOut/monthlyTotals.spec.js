@@ -57,7 +57,7 @@ const expectedResult = [
   { moneyIn: 30, moneyOut: 50 },
 ];
 
-describe.only('preparing monthly totals for sparkline display', function() {
+describe('preparing monthly totals for sparkline display', function() {
   it('correctly totals money in and money out', function(done) {
     var inStream$ = new Rx.Subject();
     const result$ = monthlyTotalsFrom(inStream$);

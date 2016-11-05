@@ -114,5 +114,16 @@ describe('the statement router', function() {
       statementRouter.savingsAccount.statements$.onNext({value: text});
       statementRouter.savingsAccount.dateChoices$.onNext('10/2016');
     });
+
+    it('provides totals for each month in the data', function(done) {
+      const subscription = statementRouter.savingsAccount.totalsByMonth$.subscribe(tbm => {
+        should.exist(tbm);
+        subscription.dispose();
+        done()
+      });
+
+      statementRouter.savingsAccount.statements$.onNext({value: text});
+      statementRouter.savingsAccount.dateChoices$.onNext('10/2016');
+    });    
   });
 });

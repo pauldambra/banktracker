@@ -1,0 +1,35 @@
+@import '../../styles/colours';
+
+.sparkline-graph {
+  display: flex;
+  flex-direction: column;
+}
+
+.cell {
+  margin-right: 2px;
+  width: 10px;
+}
+
+.positive {
+  border-bottom: 1px solid $palette-black;
+
+  .cell {
+    align-self: flex-end;
+    background-color: $palette-green;
+  }
+}
+
+.negative .cell {
+  background-color: $palette-dark-red;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.legend {
+  border-right: solid 1px $palette-black;
+  line-height: 30px;
+  width: 80px;
+}
