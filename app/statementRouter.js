@@ -2,8 +2,9 @@ import Rx from 'rx';
 import { parse } from './statements/smileStatement';
 import { getDateInformation } from './dates/statementDates';
 import { spendingTypesForDisplayFrom } from './spendingByType/spendingTypes';
-import { totalsForComparisonFrom } from './moneyInAndOut/monthGauge/totalsForComparison';
-import {monthlyTotalsFrom} from './moneyInAndOut/sparkline/monthlyTotals';
+import { totalsForComparisonFrom } from './moneyInAndOut/totalsForComparison';
+import { monthlyTotalsFrom } from './moneyInAndOut/sparkline/monthlyTotals';
+import { overallTotalFrom } from './moneyInAndOut/totalBadge/overallTotal.js';
 
 class AccountStatment {
  constructor() {
@@ -50,12 +51,20 @@ class SavingsAccountStatement extends AccountStatment {
   constructor() {
     super();
     this._totalsByMonth$ = new Rx.Subject();
-    const monthlyTotals$ = monthlyTotalsFrom(this._dataForDisplay$);
-    monthlyTotals$.subscribe(s => this._totalsByMonth$.onNext(s));
+    monthlyTotalsFrom(this._dataForDisplay$)
+      .subscribe(s => this._totalsByMonth$.onNext(s));
+
+    this._overallTotal$ = new Rx.Subject();
+    overallTotalFrom(this._dataForDisplay$)
+      .subscribe(ot => this.overallTotal$.onNext(ot));
   }
 
   get totalsByMonth$() {
     return this._totalsByMonth$;
+  }
+
+  get overallTotal$() {
+    return this._overallTotal$;
   }
 }
 

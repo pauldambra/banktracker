@@ -124,6 +124,17 @@ describe('the statement router', function() {
 
       statementRouter.savingsAccount.statements$.onNext({value: text});
       statementRouter.savingsAccount.dateChoices$.onNext('10/2016');
+    });  
+
+    it('provides an overall total for the data', function(done) {
+      const subscription = statementRouter.savingsAccount.overallTotal$.subscribe(ot => {
+        should.exist(ot);
+        subscription.dispose();
+        done()
+      });
+
+      statementRouter.savingsAccount.statements$.onNext({value: text});
+      statementRouter.savingsAccount.dateChoices$.onNext('10/2016');
     });    
   });
 });

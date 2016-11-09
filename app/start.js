@@ -7,9 +7,10 @@ import Rx from 'rx';
 import StatementInput from './statements/statementInput.component';
 import StatementTypeSwitch from './statements/statementTypeSwitch.component';
 import VerticalBarGraph from './spendingByType/verticalBarGraph.component';
-import DateSlider from './dates/dateSlider.component'
-import ComparisonGauge from './moneyInAndOut/monthGauge/comparisonGauge.component'
-import ComparisonSparkline from './moneyInAndOut/sparkline/comparisonSparkline.component'
+import DateSlider from './dates/dateSlider.component';
+import ComparisonGauge from './moneyInAndOut/monthGauge/comparisonGauge.component';
+import ComparisonSparkline from './moneyInAndOut/sparkline/comparisonSparkline.component';
+import TotalBadge from './moneyInAndOut/totalBadge/totalBadge.component.js';
 
 import { spendingTypesForDisplayFrom } from './spendingByType/spendingTypes';
 import statementRouter from './statementRouter';
@@ -34,7 +35,10 @@ ReactDOM.render(
   <ComparisonSparkline data={statementRouter.savingsAccount.totalsByMonth$} title="Savings Account" height={60}/>,
   document.getElementById('savings-account-sparkline')
   );
-
+ReactDOM.render(
+  <TotalBadge data={statementRouter.savingsAccount.overallTotal$}/>,
+  document.getElementById('savings-account-total')
+  );
 // date window items
 
 ReactDOM.render(

@@ -39,7 +39,6 @@ export default class ComparisonSparkline extends React.Component {
           moneyOut,
           rangeMax
         };
-        console.log(newState, 'newState');
         this.setState(newState);
       }
     });

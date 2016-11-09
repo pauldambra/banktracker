@@ -1,5 +1,5 @@
 import { Rx } from 'rx';
-import { totalsForComparisonFrom } from '../../app/moneyInAndOut/monthGauge/totalsForComparison';
+import { totalsForComparisonFrom } from '../../app/moneyInAndOut/totalsForComparison';
 
 const input = [
   '10/2016', 

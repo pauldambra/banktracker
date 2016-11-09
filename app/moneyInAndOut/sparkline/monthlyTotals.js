@@ -1,4 +1,4 @@
-import { totalsForComparison } from '../monthGauge/totalsForComparison';
+import { totalsForComparison } from '../totalsForComparison';
 
 import { chain, map, toPairs, sortBy, chunk } from 'lodash';
 
