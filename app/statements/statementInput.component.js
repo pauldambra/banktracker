@@ -16,7 +16,10 @@ export default class StatementInput extends React.Component {
     this.currentAccount$ = props.currentAccount;
     this.savingsAccount$ = props.savingsAccount;
     
-    props.statementTypeChoices.subscribe(stc => this.statementTypeChoice = stc);
+    props.statementTypeChoices.subscribe(stc => {
+      this.setState({value: ''});
+      this.statementTypeChoice = stc;
+    });
 
     this.handleChange = this.handleChange.bind(this);
   }
