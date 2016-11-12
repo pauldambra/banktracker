@@ -6,3 +6,7 @@
 @import '../moneyInAndOut/monthGauge/styles';
 @import '../moneyInAndOut/sparkline/styles';
 @import '../spendingByType/styles';
+
+[data-reactroot] {
+  width: 100%;
+}

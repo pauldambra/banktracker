@@ -4,8 +4,7 @@ import React from 'react';
 import { Subject } from 'rx';
 
 const sparkLinePropTypes = {
-  data: React.PropTypes.instanceOf(Subject).isRequired,
-  title: React.PropTypes.string.isRequired
+  data: React.PropTypes.instanceOf(Subject).isRequired
 };
 
 // place an item of data within it's range from 0 to height pixels
@@ -46,7 +45,6 @@ export default class ComparisonSparkline extends React.Component {
 
   render() {
     return <div className="sparkline-graph">
-            <h1>{this.props.title}</h1>
             <div className="graph">
               <div className="positive row" style={{height: this.height/2+'px'}}>
                 <div className="legend">
