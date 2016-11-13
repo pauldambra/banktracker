@@ -5,11 +5,6 @@ import ComparisonSparkline from '../../app/moneyInAndOut/sparkline/comparisonSpa
 
 describe('the sparkline', function() {
 
-  it('should set the title', function() {
-    let wrapper = mount(<ComparisonSparkline data={new Rx.Subject()} title="a title"/>);
-    wrapper.find('h1').text().should.eql('a title');
-  });
-
   it('sets each series to half the provided height', function() {
     let wrapper = mount(<ComparisonSparkline data={new Rx.Subject()} height={212} title="potato"/>);
     wrapper.find('.positive').html().should.containEql('div class="positive row" style="height: 106px;"');
