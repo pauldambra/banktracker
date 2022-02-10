@@ -27,7 +27,7 @@
     "jsdom": "^9.7.1",
     "livereload": "^0.6.0",
     "mocha": "^3.1.2",
-    "node-sass": "^3.10.1",
+    "node-sass": "^7.0.0",
     "postcss-cli": "^2.6.0",
     "react-addons-test-utils": "^15.3.2",
     "should": "^11.1.1"
